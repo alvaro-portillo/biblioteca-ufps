@@ -1,0 +1,14 @@
+services:
+  libros:
+    build: ./libros
+    ports:
+      - "8091:8091"
+
+  prestamos:
+    build: ./prestamos
+    ports:
+      - "8092:8092"
+    environment:
+      LIBROS_URL: http://libros:8091
+    depends_on:
+      - libros

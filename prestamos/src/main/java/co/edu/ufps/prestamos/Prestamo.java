@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,20 +16,29 @@ public class Prestamo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Id
+    @NotNull
     private Long libroId;
 
     @NotBlank
     private String tituloLibro;
 
-    @NotNull
+    @NotBlank
     private String codigoEstudiante;
 
+    @NotNull
     private LocalDate fechaPrestamo;
+
+    @NotNull
     private LocalDate fechaDevolucion;
 
     @NotBlank
     private String estado;
+
+    public Prestamo() {
+        fechaPrestamo = LocalDate.now();
+        fechaDevolucion = fechaPrestamo.plusDays(15);
+        estado = "ACTIVO";
+    }
 
     public void setId(Long id) {
         this.id = id;

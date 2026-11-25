@@ -18,7 +18,7 @@ public class Libro {
     @NotBlank
     private String titulo;
 
-    @NotNull
+    @NotBlank
     private String autor;
 
     @NotNull
